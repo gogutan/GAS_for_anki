@@ -11,5 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "@types/google-apps-script": "^1.0.56"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "xmlhttprequest": "^1.8.0"
   }
 }

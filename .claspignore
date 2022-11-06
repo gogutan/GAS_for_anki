@@ -1,0 +1,3 @@
+node_modules/**
+ankiconnect.ts
+bookmarklet.js
