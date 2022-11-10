@@ -8,7 +8,7 @@ javascript: (
     var sentence = replacedBody.match(regexp)[0].trim();
     var title = document.title;
     var url = window.location.href;
-    var fetchingUrl = `${deployedUrl}?word=${word}&sentence=${sentence}&title=${title}&url=${url}`;
+    var fetchingUrl = `${deployedUrl}?word=${encodeURIComponent(word)}&sentence=${encodeURIComponent(sentence)}&title=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
     document.addEventListener("securitypolicyviolation", (e) => {
       window.location = fetchingUrl;
       setTimeout(() => { window.stop(); }, 200);
