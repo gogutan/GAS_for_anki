@@ -18,8 +18,12 @@ const createTSV = () => {
   const tsv = values.join('\n')
   const blob = Utilities.newBlob(tsv, 'text/tab-separated-values', sheet.getSheetName() + '.tsv')
   const folder = getParentFolder(ss)
-  folder.getFilesByName(`${sheet.getName()}.tsv`).next()?.setTrashed(true);
-  folder.createFile(blob)
+  const files = folder.getFilesByName(`${sheet.getName()}.tsv`)
+  if (files.hasNext()) {
+    files.next().setContent(blob.getDataAsString())
+  } else {
+    folder.createFile(blob)
+  }
 }
 
 const splitByTab = ((array: []) => {
