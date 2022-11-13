@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/google-apps-script": "^1.0.56"
+    "@types/google-apps-script": "^1.0.56",
+    "microsoft-cognitiveservices-speech-sdk": "^1.24.1"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
