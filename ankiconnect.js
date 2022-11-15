@@ -1,11 +1,12 @@
 import * as fs from 'node:fs'
 import { parse } from 'csv-parse/sync'
 import * as xmlhttprequest from 'xmlhttprequest'
-import { textToSpeech } from "./azure-cognitiveservices-speech.js";
-import path from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { textToSpeech } from './azure-cognitiveservices-speech.js'
+import path from 'path'
+import { fileURLToPath } from 'url'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const VERSION = 6
 
 // ref: https://foosoft.net/projects/anki-connect/
 function invoke(action, version, params = {}) {
@@ -61,26 +62,31 @@ const noteParams = async (records) => {
 
 const addNotes = async (records) => {
   const action = "addNotes"
-  const version = 6
   const params = await noteParams(records)
-  return await invoke(action, version, params)
+  return invoke(action, VERSION, params)
 }
 
 const canAddNotes = async (records) => {
   const action = "canAddNotes"
-  const version = 6
   const params = await noteParams(records)
-  return await invoke(action, version, params)
+  return invoke(action, VERSION, params)
 }
 
 const storeMediaFile = async (filename, path) => {
   const action = "storeMediaFile"
-  const version = 6
   const params = {
     "filename": filename,
     "path": path
   }
-  return await invoke(action, version, params)
+  return invoke(action, VERSION, params)
+}
+
+const notesInfo = async (notes) => {
+  const action = "notesInfo"
+  const params = {
+    "notes": notes
+  }
+  return invoke(action, VERSION, params)
 }
 
 const main = async () => {
@@ -96,17 +102,19 @@ const main = async () => {
   }).filter((record) => {
     return record !== null
   })
-
   const recordsWithMP3 = await Promise.all(filteredRecords.map(async (record) => {
     const [word, sentence, title, link] = record
-    const wordAudioStream = await textToSpeech(process.env.AZUREKEY, 'eastus', word, `./medias/${word}.mp3`)
+    await textToSpeech(process.env.AZUREKEY, 'eastus', word, `./medias/${word}.mp3`)
     const wordAudio = await storeMediaFile(`_${word}.mp3`, `${__dirname}/medias/${word}.mp3`)
-    const sentenceAudioStream = await textToSpeech(process.env.AZUREKEY, 'eastus', sentence, `./medias/${word}Sentence.mp3`)
+    await textToSpeech(process.env.AZUREKEY, 'eastus', sentence, `./medias/${word}Sentence.mp3`)
     const sentenceAudio = await storeMediaFile(`_${word}Sentence.mp3`, `${__dirname}/medias/${word}Sentence.mp3`)
     return [word, sentence, title, link, `[sound:${wordAudio}]`, `[sound:${sentenceAudio}]`]
   }))
 
-  addNotes(recordsWithMP3)
+  const addedNoteIds = await addNotes(recordsWithMP3)
+  const addedNotes = await notesInfo(addedNoteIds)
+  console.log('Added cards:')
+  await addedNotes.forEach((note) => console.log(note.fields))
 }
 
 main()
