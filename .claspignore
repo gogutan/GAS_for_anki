@@ -1,3 +1,4 @@
 node_modules/**
 ankiconnect.js
 bookmarklet.js
+azure-cognitiveservices-speech.js
