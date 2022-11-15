@@ -104,9 +104,10 @@ const main = async () => {
   })
   const recordsWithMP3 = await Promise.all(filteredRecords.map(async (record) => {
     const [word, sentence, title, link] = record
-    await textToSpeech(process.env.AZUREKEY, 'eastus', word, `./medias/${word}.mp3`)
+    const voice = "en-US, AIGenerate1Neural"
+    await textToSpeech(process.env.AZUREKEY, 'eastus', word, `./medias/${word}.mp3`, voice)
     const wordAudio = await storeMediaFile(`_${word}.mp3`, `${__dirname}/medias/${word}.mp3`)
-    await textToSpeech(process.env.AZUREKEY, 'eastus', sentence, `./medias/${word}Sentence.mp3`)
+    await textToSpeech(process.env.AZUREKEY, 'eastus', sentence, `./medias/${word}Sentence.mp3`, voice)
     const sentenceAudio = await storeMediaFile(`_${word}Sentence.mp3`, `${__dirname}/medias/${word}Sentence.mp3`)
     return [word, sentence, title, link, `[sound:${wordAudio}]`, `[sound:${sentenceAudio}]`]
   }))

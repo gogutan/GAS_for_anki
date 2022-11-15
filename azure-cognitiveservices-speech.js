@@ -11,13 +11,16 @@ import * as fs from 'fs';
  * @param {*} text text to convert to audio/speech
  * @param {*} filename optional - best for long text - temp file for converted speech/audio
  */
-export const textToSpeech = async (key, region, text, filename)=> {
+
+// ref: https://learn.microsoft.com/ja-jp/azure/developer/javascript/tutorial/convert-text-to-speech-cognitive-services
+export const textToSpeech = async (key, region, text, filename, voice) => {
 
     // convert callback function to promise
     return new Promise((resolve, reject) => {
 
         const speechConfig = sdk.SpeechConfig.fromSubscription(key, region);
         speechConfig.speechSynthesisOutputFormat = 5; // mp3
+        speechConfig.speechSynthesisVoiceName = `Microsoft Server Speech Text to Speech Voice (${voice})`;
 
         let audioConfig = null;
 
