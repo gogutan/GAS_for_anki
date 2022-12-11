@@ -1,0 +1,29 @@
+<script>
+  // Automatically copy the front word when you open back side.
+  // Anki seems not to support `navigator.clipboard` methods.
+  // Therefore, this script is unstable and works properly only on iOS app.
+  var frontParagraph = document.querySelector('.front');
+  var range = document.createRange();
+  range.selectNode(frontParagraph);
+  window.getSelection().addRange(range);
+  document.execCommand('copy');
+  window.getSelection().removeAllRanges();
+</script>
+
+<body>
+  <p>{{単語}}</p>
+
+  <div class="sentence">
+    <p>{{例文}}</p>
+  </div>
+  {{例文音声}}
+
+  <div class="link">
+    <p>{{ページタイトル}}</p>
+    <p><a href="{{text:リンク}}">{{リンク}}</a></p>
+  </div>
+
+  <div class="googleImages">
+    <a href="https://www.google.co.jp/search?q={{text:単語}}&tbm=isch">Google Images</a>
+  </div>
+</body>

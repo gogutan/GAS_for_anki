@@ -1,0 +1,35 @@
+.card {
+  font-family: arial;
+  font-size: 20px;
+  text-align: left;
+  color: #232323;
+  background-color: #ffffff;
+}
+
+.sentence {
+  color: #232323;
+  background: #f3fdfd;
+  border-left: solid 7px #b0e0e6;
+}
+.sentence p {
+  padding: 9px;
+}
+
+.link {
+  margin: 18px 0 25px 0;
+  border: solid 2px #ffe09a;
+}
+.link p {
+  margin: 9px;
+}
+
+.googleImages {
+  display: inline;
+  background-color: #35b5b5;
+  padding: 5px;
+  border-radius: 3px;
+}
+.googleImages a {
+  text-decoration: none;
+  color: #ffffff;
+}
