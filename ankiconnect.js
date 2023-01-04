@@ -102,6 +102,8 @@ const main = async () => {
   }).filter((record) => {
     return record !== null
   })
+
+  // parallel(If row count is less than about 10, parallel generating is acceptable.)
   const recordsWithMP3 = await Promise.all(filteredRecords.map(async (record) => {
     const [word, sentence, title, link] = record
     const voice = "en-US, AIGenerate1Neural"
@@ -111,6 +113,18 @@ const main = async () => {
     const sentenceAudio = await storeMediaFile(`_${word}Sentence.mp3`, `${__dirname}/medias/${word}Sentence.mp3`)
     return [word, sentence, title, link, `[sound:${wordAudio}]`, `[sound:${sentenceAudio}]`]
   }))
+
+  // nonparallel(If there are too many rows, nonparallel generating is preferable.)
+  // const recordsWithMP3 = []
+  // for ( let record of filteredRecords ) {
+  //   const [word, sentence, title, link] = record
+  //   const voice = "en-US, AIGenerate1Neural"
+  //   await textToSpeech(process.env.AZUREKEY, 'eastus', word, `./medias/${word}.mp3`, voice)
+  //   const wordAudio = await storeMediaFile(`_${word}.mp3`, `${__dirname}/medias/${word}.mp3`)
+  //   await textToSpeech(process.env.AZUREKEY, 'eastus', sentence, `./medias/${word}Sentence.mp3`, voice)
+  //   const sentenceAudio = await storeMediaFile(`_${word}Sentence.mp3`, `${__dirname}/medias/${word}Sentence.mp3`)
+  //   recordsWithMP3.push([word, sentence, title, link, `[sound:${wordAudio}]`, `[sound:${sentenceAudio}]`])
+  // }
 
   const addedNoteIds = await addNotes(recordsWithMP3)
   const addedNotes = await notesInfo(addedNoteIds)
