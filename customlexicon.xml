@@ -1,16 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lexicon version="1.0"
-      xmlns="http://www.w3.org/2005/01/pronunciation-lexicon"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.w3.org/2005/01/pronunciation-lexicon
-        http://www.w3.org/TR/2007/CR-pronunciation-lexicon-20071212/pls.xsd"
-      alphabet="ipa" xml:lang="en-US">
-    <lexeme>
-        <grapheme>Kazmarak</grapheme>
-        <phoneme>kat͡ʂˈma.rɛk</phoneme>
-    </lexeme>
-    <lexeme>
-        <grapheme>😀</grapheme>
-        <alias>test emoji</alias>
-    </lexeme>
+    xmlns="http://www.w3.org/2005/01/pronunciation-lexicon"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    alphabet="ipa" xml:lang="en-US">
+  <lexeme>
+	  <grapheme>Scotland MV</grapheme>
+	  <alias>test test one</alias>
+  </lexeme>
+  <lexeme>
+    <grapheme>conduct</grapheme>
+    <phoneme>kənˈdʌkt</phoneme>
+  </lexeme>
+  <lexeme>
+    <grapheme>hysteria</grapheme>
+    <phoneme>hɪsˈteriə</phoneme>
+  </lexeme>
+  <lexeme>
+    <grapheme>converts</grapheme>
+    <phoneme>kənˈvəːts</phoneme>
+  </lexeme>
+  <lexeme>
+    <grapheme>exploit</grapheme>
+    <phoneme>ɪkspˈlɔɪt</phoneme>
+  </lexeme>
+  <lexeme>
+    <grapheme>ユース</grapheme>
+    <phoneme>juːs</phoneme>
+  </lexeme>
+  <lexeme>
+    <grapheme>economically</grapheme>
+    <phoneme>e.k.əˈnɑː.mɪ.kəl.i</phoneme>
+  </lexeme>
+  <lexeme>
+    <grapheme>👶</grapheme>
+    <alias>test baby</alias>
+  </lexeme>
+  <lexeme>
+    <grapheme>👶🏻</grapheme>
+    <alias>test child : light skin tone</alias>
+  </lexeme>
+  <lexeme>
+    <grapheme>🏼</grapheme>
+    <alias>test medium light skin tone</alias>
+  </lexeme>
 </lexicon>
