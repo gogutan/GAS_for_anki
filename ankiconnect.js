@@ -44,7 +44,7 @@ const noteParams = async (records) => {
   const notes = records.map((record) => {
     const [word, sentence, title, link, wordAudio, sentenceAudio] = record
     return {
-      "deckName": "Words and sentences from websites",
+      "deckName": "0_Words and sentences from websites",
       "modelName": "Words and sentences from websites",
       "fields": {
         "単語": word,

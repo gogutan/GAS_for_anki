@@ -40,7 +40,7 @@ const noteParams = async (records) => {
   const notes = records.map((record) => {
     const [transcription, sound, video] = record
     return {
-      "deckName": "Genshin Impact",
+      "deckName": "0_Genshin Impact",
       "modelName": "Genshin Impact",
       "fields": {
         "Transcription": transcription,
